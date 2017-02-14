@@ -20,4 +20,4 @@ for folder in $2/*; do Chore --shadowless --pixelsize 0.027 --minimum-move-body 
 
 ## need to create a large file containing all rev files with
 ## data, plate name and strain name in each row
-for filename in $(find . -name '*.rev'); do grep -H '[.]*' $filename >> data.srev; done
+for filename in $(find . -name '*.rev'); do grep -H '[.]*' $filename >> ./$2/data.srev; done
