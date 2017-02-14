@@ -1,0 +1,272 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red34\green139\blue34;\red160\green32\blue240;\red0\green0\blue255;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs20 \cf2 %%%%for 1 strain!!!!
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 clear \cf3 all
+\fs24 \cf0 \
+
+\fs20  
+\fs24 \
+
+\fs20 prePlate = 180;
+\fs24 \
+
+\fs20 ISI = 10;
+\fs24 \
+
+\fs20 numStim = 30;
+\fs24 \
+
+\fs20 dt=3;
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 magDat2 = [0 0 0 0 0];
+\fs24 \
+
+\fs20 revInit = prePlate:ISI:prePlate+(ISI*numStim)-ISI;
+\fs24 \
+
+\fs20 revTerm = prePlate+dt:ISI:prePlate+(ISI*numStim)-ISI +dt;
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 Motherfoldercontents = dir(pwd);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 %counting counts the group folders
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 counting = 0;
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 %Loops through folders
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf4 for\cf0  z = 1 : numel(Motherfoldercontents);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf4 if\cf0  Motherfoldercontents(z).isdir && ~any(strcmp(Motherfoldercontents(z).name, \{\cf3 '.'\cf0  \cf3 '..'\cf0 \}));
+\fs24 \
+
+\fs20         counting=counting+1;
+\fs24 \
+
+\fs20         group(counting).name = Motherfoldercontents(z).name;
+\fs24 \
+
+\fs20         parentfolder = Motherfoldercontents(z).name;
+\fs24 \
+
+\fs20         cd(parentfolder);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 dirData = dir(\cf3 '*.revSumm'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 storedData = dlmread(dirData(1).name);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 for\cf0  t = 1:size(revInit,2); 
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0 stimRevs = storedData(:,2) > revInit(1,t) & storedData(:,2) < revTerm(1,t);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 datum = storedData(stimRevs,:);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 [uniqueID, firstInd, allInd] = unique(datum(:,1));
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 for\cf0  i = 1:numel(firstInd)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     revComb1(i,1) = sum(datum(allInd == i,3));
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 for\cf0  i = 1:numel(firstInd)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     revComb2(i,1) = sum(datum(allInd == i,4));
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0  
+\fs24 \
+
+\fs20 revComb = [revComb1 revComb2];
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 deltaDatum = [1;diff(datum(:,1))]; 
+\fs24 \
+
+\fs20 condition1 = deltaDatum ==0;
+\fs24 \
+
+\fs20 datum(condition1,:)=[];
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 magDat1 = [(counting.*ones(size(revComb,1),1)) (t.*ones(size(revComb,1),1))];
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 magDat2=[magDat2;magDat1 datum(:,2) revComb];
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 clear \cf3 datum\cf0  \cf3 allInd\cf0  \cf3 magDat1\cf0  \cf3 amount\cf0  \cf3 condition1\cf0  \cf3 uniqueID\cf0  \cf3 datum\cf0  \cf3 deltaDatum\cf0  \cf3 dist1\cf0  \cf3 firstInd\cf0  \cf3 stimRevs\cf0  \cf3 revComb\cf0  \cf3 revComb1\cf0  \cf3 revComb2\cf0  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf4 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0  
+\fs24 \
+
+\fs20 cd (\cf3 '..'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 clear \cf3 dirData\cf0  \cf3 storedData\cf0  \cf3 t
+\fs24 \cf0 \
+
+\fs20     \cf4 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf4 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0  
+\fs24 \
+
+\fs20 magDat2(1,:)=[];
+\fs24 \
+
+\fs20 magDat2(:,6)=magDat2(:,4)./magDat2(:,5);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 revPoints = revInit(1,magDat2(:,2))';
+\fs24 \
+
+\fs20 magDat2(:,7)=magDat2(:,3)-revPoints;
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 currentDirectory = pwd;
+\fs24 \
+
+\fs20 [upperPath, deepestFolder] = fileparts(currentDirectory);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 saveProg = [\cf3 'save '\cf0  deepestFolder \cf3 '.magDat magDat2 /ascii'\cf0 ];
+\fs24 \
+
+\fs20 eval(saveProg);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\
+}
