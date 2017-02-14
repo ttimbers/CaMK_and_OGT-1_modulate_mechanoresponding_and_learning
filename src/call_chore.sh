@@ -16,7 +16,7 @@
 export MWT_JAVA_OPTIONS=-Xmx$1g
 
 ## call choreography to analyze the MWT data (each folder within the specified directory)
-for folder in $2/*; do Chore --shadowless --pixelsize 0.027 --minimum-move-body 2 --minimum-time 20 --segment --output speed,midline,morphwidth --plugin Reoutline::despike --plugin Respine --plugin MeasureReversal::all $folder; done
+for folder in $2/*; do Chore --shadowless --pixelsize 0.027 --minimum-move-body 2 --minimum-time 20 --segment --output speed,midline,morphwidth --plugin Reoutline::despike --plugin Respine --plugin MeasureReversal::tap::dt=1::collect $folder; done
 
 ## need to create a large file containing all rev files with
 ## data, plate name and strain name in each row
