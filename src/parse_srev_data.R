@@ -18,9 +18,11 @@ args <- commandArgs(trailingOnly = TRUE)
 # assign variable names to arguements
 data_in_path <- args[1]
 data_out_path <- args[2]
+stimulus_onset <- as.numeric(args[3])
+isi <- as.numeric(args[4])
 
 ## load data into R (data.srev)
-data <- read_table(data_in_path, col_names = FALSE)
+data <- read_delim(data_in_path, col_names = FALSE, delim = " ")
 
 # extract plate information from first column (X1). Plate is the date (8 numeric characters) and an underdash (-) and the time (6 numeric characters: HH:MM:SS)
 plate <- str_extract(data$X1, "[0-9]{8}_[0-9]{6}")
@@ -32,18 +34,21 @@ strain <- sub("[0-9]+/", "", strain)
 strain <- toupper(strain)
 
 # extract wormID from first column (X1). Time gets included into the path string when we use grep to combine all the files. It's format is: rev:#####
-id <- str_extract(data$X1, "rev:[0-9]{5}")
-id <- sub("rev:", "", id)
-
-# split column X2 into components (time of reversal, reversal distance and reversal duration)
-data <- separate(data, X2, into = c("time", "garbage", "distance", "duration"), sep = " ")
+id <- str_extract(data$X1, ":[0-9]{5}")
+id <- sub(":", "", id)
 
 # combine to make the dataframe we want
 parsed_data <- data.frame(plate,
                    group = strain,
                    id,
-                   time = as.numeric(data$time),
-                   rev_dist = as.numeric(data$distance))
+                   time = as.numeric(data$X2),
+                   rev_dist = as.numeric(data$X4))
+
+if (exists("stimulus_onset") & exists("isi")) {
+  # convert times to tap numbers
+  parsed_data$tap <- round(((parsed_data$time - stimulus_onset) / isi) + 1) %>% 
+    as.integer()
+}
 
 # write data to file
 write_csv(parsed_data, data_out_path)
