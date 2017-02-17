@@ -50,5 +50,5 @@ bash call_chore.sh 4 data/Experiment_1
 * In the Unix Shell/terminal run the `parse_srev_data.R` as shown below. This file parses `data.srev` to have the columns: `plate`, `group`, `id`, `time`, and `rev_dist`. It requires the following arguments from the user: (1) path to data to parse, (2) path to write data to.
 
 ~~~
-Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/parsed.srev
+Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/srev.csv
 ~~~
