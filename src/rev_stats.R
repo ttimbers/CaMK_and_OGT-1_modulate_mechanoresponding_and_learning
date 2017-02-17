@@ -81,7 +81,15 @@ main <- function() {
           axis.text.y = element_text(colour = "black"),
           axis.line.x = element_line(),
           axis.line.y = element_line()) +
-    scale_color_manual(values = c("black", "red", "blue", "green", "lightskyblue", "purple2")) +
+    scale_color_manual(values = c("black", 
+                                  "red", 
+                                  "blue", 
+                                  "green4", 
+                                  "lightskyblue", 
+                                  "purple2",
+                                  "firebrick2",
+                                  "sienna1",
+                                  "gold3")) +
     scale_x_continuous(breaks = seq(0, 30, by = 5))
   
   ggsave(paste0(data_out_path, "_fig.pdf"), rev_dist_plot, height = 4, width = 5)        
