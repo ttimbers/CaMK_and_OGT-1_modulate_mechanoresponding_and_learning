@@ -9,7 +9,7 @@
 # 5. rev_dist
 # 6. tap
 
-# example usage: Rscript rev_stats.R exp2/parsed.csv exp2/stats N2 PY1589
+# example usage: Rscript rev_stats.R exp2/parsed.csv exp2/stats N2
 
 # load libraries
 library(tidyverse)
@@ -24,7 +24,6 @@ args <- commandArgs(trailingOnly = TRUE)
 data_in_path <- args[1]
 data_out_path <- args[2]
 base_strain <- args[3]
-base_strain_2 <- args[4]
 
 main <- function() {
   # load data
@@ -43,17 +42,6 @@ main <- function() {
   
   # combine data frames
   tap_stats <- bind_rows(tap_1_stats, tap_30_stats)
-  
-  if (exists("base_strain_2")) {
-    # do stats for second base strain for tap 1 (if exists)
-    base2_tap_1_stats <- ancova_dist_stats(data, base_strain_2, 1)
-    
-    # do stats for second base strain for tap 30 (if exists)
-    base2_tap_30_stats <- ancova_dist_stats(data, base_strain_2, 30)
-    
-    # combine with base_strain stats
-    tap_stats <- bind_rows(list(tap_stats, base2_tap_1_stats, base2_tap_30_stats))
-  }
   
   # write stats to csv
   write_csv(tap_stats, paste0(data_out_path, "_stats.csv"))
