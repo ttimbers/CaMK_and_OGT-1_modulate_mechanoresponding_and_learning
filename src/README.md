@@ -47,8 +47,8 @@ have it accesible as a shell script in the executable path named "Chore":
 bash call_chore.sh 4 data/Experiment_1
 ~~~
 
-* In the Unix Shell/terminal run the `parse_srev_data.R` as shown below. This file parses `data.srev` to have the columns: `plate`, `group`, `id`, `time`, and `rev_dist`. It requires the following arguments from the user: (1) path to data to parse, (2) path to write data to.
+* In the Unix Shell/terminal run the `parse_srev_data.R` as shown below. This file parses `data.srev` to have the columns: `plate`, `group`, `id`, `time`, and `rev_dist`. It requires the following arguments from the user: (1) path to data to parse, (2) path to write data to, (3) stimulus onset time, (4) interstimulus interval (isi) time. The last two arguments are optional, and if provided the returned `.csv` also contains an integer column of tap numbers.
 
 ~~~
-Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/srev.csv
+Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/srev.csv 100 60
 ~~~

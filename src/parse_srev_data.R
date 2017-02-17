@@ -6,7 +6,13 @@
 # 4. time
 # 5. rev_dist
 #
-# example usage: Rscript src/parse_srev_data.R exp2/data.srev exp2/parsed.srev
+# requires arguments:
+# 1. path to data file (data.srev)
+# 2. path to save parsed data to
+# 3. stimulus onset (optional)
+# 4. isi (optional)
+#
+# example usage: Rscript src/parse_srev_data.R exp2/data.srev exp2/parsed.srev 100 60
 
 # load libraries
 library(tidyverse)
