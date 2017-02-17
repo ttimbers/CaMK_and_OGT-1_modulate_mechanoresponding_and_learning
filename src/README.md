@@ -55,6 +55,5 @@ Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/parsed.csv 100 60
 * In the Unix Shell/terminal run the `rev_stats.R` as shown below. This file takes a `.csv` created by `parse_srev_data.R` and does a ANOVA using `rev_dist` as response variable, `group` as the fixed effect explanatory variable, and `plate` as a random effect explanatory variable. It also then does a Tukey's HSD to get p-values that can be useful to decide which groups are different from each other. The stats are returned as a `.csv`. It also creates a habituation plot for reversal distance. It requires that the input `.csv` from `parse_srev_data.R` has the tap integer column (e.g., use the stimulus onset time and interstimulus interval (isi) time arguments with that script). It also requires the following arguments from the user: (1) path to data to parse, (2) prefix of path to write data to, (3) base/reference strain for comparison (*e.g.,* N2).
 
 ~~~
-# for a single base/reference strain
 Rscript rev_stats.R Experiment_1/parsed.csv Experiment_1/Experiment_1 N2
 ~~~
