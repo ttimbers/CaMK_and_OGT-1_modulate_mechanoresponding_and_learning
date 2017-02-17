@@ -12,7 +12,7 @@
 # 3. stimulus onset (optional)
 # 4. isi (optional)
 #
-# example usage: Rscript src/parse_srev_data.R exp2/data.srev exp2/parsed.srev 100 60
+# example usage: Rscript parse_srev_data.R exp2/data.srev exp2/parsed.csv 100 60
 
 # load libraries
 library(tidyverse)

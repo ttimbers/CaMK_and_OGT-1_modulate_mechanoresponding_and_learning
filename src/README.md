@@ -2,8 +2,7 @@
 
 ### Installation Dependencies
 
-`Java`, `R`, R packages `tidyverse`, `stringr`, and `nlme`, and the Multi-worm Tracker
-Analysis software (`Chore.jar`) as a shell script in the executable path named `Chore`.
+`Java`, `R`, R packages `tidyverse`, `stringr`, `nlme`, `broom` and `multcomp` and the Multi-worm Tracker Analysis software (`Chore.jar`) as a shell script in the executable path named `Chore`.
 To "easily" do this on a Mac or Linux OS, please follow the following installation
 instructions:
 
@@ -51,4 +50,14 @@ bash call_chore.sh 4 data/Experiment_1
 
 ~~~
 Rscript parse_srev_data.R Experiment_1/data.srev Experiment_1/srev.csv 100 60
+~~~
+
+* In the Unix Shell/terminal run the `rev_stats.R` as shown below. This file takes a `.csv` created by `parse_srev_data.R` and does a ANOVA using `rev_dist` as response variable, `group` as the fixed effect explanatory variable, and `plate` as a random effect explanatory variable. It also then does a Tukey's HSD to get p-values that can be useful to decide which groups are different from each other. The stats are returned as a `.csv`. It requires that the input `.csv` from `parse_srev_data.R` has the tap integer column (e.g., use the stimulus onset time and interstimulus interval time arguments with that script). It also requires the following arguments from the user: (1) path to data to parse, (2) prefix of path to write data to, (3) base/reference strain for comparison (e.g., N2), (4) second base/reference strain for comparison (optional).
+
+~~~
+# for a single base/reference strain
+Rscript rev_stats.R exp2/parsed.csv exp2/stats N2
+
+# for two base/reference strains
+Rscript rev_stats.R exp2/parsed.csv exp2/stats N2 PY1589
 ~~~
