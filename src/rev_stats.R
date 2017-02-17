@@ -56,7 +56,35 @@ main <- function() {
   }
   
   # write stats to csv
-  write_csv(tap_stats, paste0(data_out_path, ".csv"))
+  write_csv(tap_stats, paste0(data_out_path, "_stats.csv"))
+  
+  # plot data
+  data <- within(data, group <- relevel(group, ref = base_strain))
+  summary_data <- data %>% 
+    group_by(group, tap) %>% 
+    summarise(mean = mean(rev_dist),
+              n = n(),
+              sd = sd(rev_dist),
+              error = qt(0.975, df = n, lower.tail = TRUE) * sd / sqrt(n),
+              ci_lower = mean - error,
+              ci_upper = mean + error)
+  
+  rev_dist_plot <- ggplot(summary_data, aes(x = tap, y = mean, color = group)) +
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper)) +
+    labs(x = "Time(s)", y = "Reversal Distance (mm)") + 
+    theme(legend.title = element_blank(),
+          legend.key=element_rect(fill = 'white'),
+          panel.background = element_rect(fill = 'white'),
+          axis.text.x = element_text(colour = "black"),
+          axis.text.y = element_text(colour = "black"),
+          axis.line.x = element_line(),
+          axis.line.y = element_line()) +
+    scale_color_manual(values = c("black", "red", "blue", "green", "lightskyblue", "purple2")) +
+    scale_x_continuous(breaks = seq(0, 30, by = 5))
+  
+  ggsave(paste0(data_out_path, "_fig.pdf"), rev_dist_plot, height = 4, width = 5)        
 }
 
 # runs ANCOVA on x (data frame) using ref_strain as reference strain to compare to
