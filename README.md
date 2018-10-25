@@ -1,22 +1,10 @@
-# CaMK (CMK-1) and O-GlcNAc transferase (OGT-1) modulate  mechanosensory responding and learning in *C. elegans*
+# Insights into the roles of CMK-1 and OGT-1 in interstimulus interval-dependent habituation in *Caenorhabditis elegans*
 
-*Authors:* Tiffany A. Timbers\*, Evan L. Ardiel\*, Kirsten C. Y. Lee, Javad Safaei, Steven L. Pelech, and Catharine H. Rankin
+*Authors:* Evan L. Ardiel\*, Troy A. McDiarmid\*, Tiffany A. Timbers\*, Kirsten C. Y. Lee, Javad Safaei, Steven L. Pelech, and Catharine H. Rankin
 \* these authors contributed equally
 
-In preparation for submission to [Genetics](http://submit.genetics.org/)
+
+In preparation for submission to [Proceedings of the Royal Society B: Biological Sciences](http://rspb.royalsocietypublishing.org/)
 
 ## Abstract:
-Many aspects of neural physiology, including processes that underlie learning (e.g. neurotransmitter release and long-lasting changes in synaptic strength), are regulated by brief and local changes in [μm]
-levels of free intracellular Ca 2+ . On this scale, changes in [Ca 2+ ] are known to activate many Ca 2+ -
-sensors, including the Ca 2+ /calmodulin-dependent kinases (CaMKs). Although CaMK4 is known to
-function in long-term memory and its paralog, CaMK1, in nervous system development, there is no
-evidence indicating that they function in learning acquisition. Here we reveal that the *C. elegans*
-ortholog of CaMK1/4, CMK-1, regulates responses to mechanical
-stimuli and learning, specifically tap habituation. From catalytic site analysis of the human and 
-*C. elegans* CaMKs, we predicted potential CaMK phosphorylation targets and, through mutation studies,
-identified one of these, O-linked N-acetylglucosamine (O-GlcNAc) transferase, OGT-1, as also being
-necessary for wild-type responses to mechanical stimuli and learning. Detailed behavioral analysis of
-single and double mutants suggests that CMK-1 and OGT-1 function in parallel pathways that may
-converge on a common substrate to modulate the tap response. Our results provide the first evidence of
-a role for CaMK and O-GlcNAc post-translational modification in responding to mechanical stimuli
-and learning, which are fundamental biological processes present in all animals.
+Habituation is a ubiquitous form of non-associative learning observed as a decrement in responding to repeated stimulation that cannot be explained by sensory adaptation or motor fatigue. One of the defining characteristics of habituation is its sensitivity to the rate at which training stimuli are presented – animals habituate faster in response to more rapid stimulation. The molecular mechanisms underlying this interstimulus interval (ISI)-dependent characteristic of habituation remain unknown. In this article we use behavioral neurogenetic and bioinformatic analyses in the nematode Caenorhabiditis elegans to identify the first molecules that modulate habituation in an ISI-dependent manner. We show that the Caenorhabditis elegans orthologs of Ca2+/calmodulin-dependent kinases CaMK1/4, CMK-1, and O-linked N-acetylglucosamine (O-GlcNAc) transferase, OGT-1, both function in primary sensory neurons to inhibit habituation at short ISIs and promote it at long ISIs. In addition, both cmk-1 and ogt-1 mutants display a rare mechanosensory hyper-responsive phenotype, i.e. larger mechanosensory responses than wild-type. Overall, our work identifies two conserved genes that function in sensory neurons to modulate habituation in an ISI-dependent manner, providing the first insights into the molecular mechanisms underlying the universally observed phenomenon that habituation has different properties when stimuli are delivered at different rates.
